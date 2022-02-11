@@ -14,5 +14,13 @@
 (*you can connect to database using Dbeaver and selecting PostgreSQL as Database type*)
 ---
 ## After running Docker and Database
+* When docker is up you are ready to run the Migrations, so you can have the database with an initial data.
+* To run the Migrations you need, in your Visual Studio, to go to Menu
+> **Tools > NuGet Package Manager > Package Manager Console**
+* With console opened type:
+>**update-database**
+* And you gonna see the Migration running. After that your database will have an initial data in Users Table.
+---
+## After Migrations
 * Now you good to go and explore this project example of an API builded in .Net 6
 * Open the Solution (.sln) in Visual Studio and have fun!
