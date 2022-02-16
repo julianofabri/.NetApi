@@ -13,6 +13,8 @@ namespace BankApi
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Statment> Statments { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

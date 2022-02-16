@@ -1,4 +1,5 @@
-﻿using BankApi.Models;
+﻿using BankApi.Dtos;
+using BankApi.Models;
 using BankApi.Repository;
 
 namespace BankApi.Services
@@ -16,6 +17,17 @@ namespace BankApi.Services
         {
             var allUsers = _userRepository.GetAll();
             return allUsers;
+        }
+
+        public void AddUser(UserDto userDto)
+        {
+            _userRepository.AddUser(userDto);
+        }
+
+        public User GetById(long id)
+        {
+            var user = _userRepository.GetById(id);
+            return user;
         }
     }
 }

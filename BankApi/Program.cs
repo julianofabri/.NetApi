@@ -19,9 +19,16 @@ builder.Services.AddEntityFrameworkNpgsql()
    .BuildServiceProvider();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<StatmentService>();
+builder.Services.AddScoped<StatmentRepository>();
+builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<AccountRepository>();
+
 var mappingConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new UserProfile());
+    mc.AddProfile(new AccountProfile());
+    mc.AddProfile(new StatmentProfile());
 });
 IMapper autoMapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(autoMapper);

@@ -3,6 +3,7 @@ using System;
 using BankApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BankApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220215170025_foreingkey")]
+    partial class foreingkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,7 +113,7 @@ namespace BankApi.Migrations
             modelBuilder.Entity("BankApi.Models.Account", b =>
                 {
                     b.HasOne("BankApi.Models.User", "User")
-                        .WithMany("Accounts")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -122,22 +124,12 @@ namespace BankApi.Migrations
             modelBuilder.Entity("BankApi.Models.Statment", b =>
                 {
                     b.HasOne("BankApi.Models.Account", "Account")
-                        .WithMany("statments")
+                        .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("BankApi.Models.Account", b =>
-                {
-                    b.Navigation("statments");
-                });
-
-            modelBuilder.Entity("BankApi.Models.User", b =>
-                {
-                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

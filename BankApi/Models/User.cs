@@ -1,9 +1,15 @@
-﻿namespace BankApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BankApi.Models
 {
     public class User
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
+
+        [MaxLength(255)]
         public string Name { get; set; }
+
+        public List<Account> Accounts { get; set; }
 
     }
 }

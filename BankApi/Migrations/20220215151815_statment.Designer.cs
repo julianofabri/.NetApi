@@ -3,6 +3,7 @@ using System;
 using BankApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BankApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220215151815_statment")]
+    partial class statment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,12 +35,7 @@ namespace BankApi.Migrations
                     b.Property<float>("Amount")
                         .HasColumnType("real");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Accounts");
                 });
@@ -51,19 +48,15 @@ namespace BankApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("userId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("userId");
 
                     b.ToTable("Statments");
                 });
@@ -108,36 +101,15 @@ namespace BankApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BankApi.Models.Account", b =>
-                {
-                    b.HasOne("BankApi.Models.User", "User")
-                        .WithMany("Accounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("BankApi.Models.Statment", b =>
                 {
-                    b.HasOne("BankApi.Models.Account", "Account")
-                        .WithMany("statments")
-                        .HasForeignKey("AccountId")
+                    b.HasOne("BankApi.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("BankApi.Models.Account", b =>
-                {
-                    b.Navigation("statments");
-                });
-
-            modelBuilder.Entity("BankApi.Models.User", b =>
-                {
-                    b.Navigation("Accounts");
+                    b.Navigation("user");
                 });
 #pragma warning restore 612, 618
         }

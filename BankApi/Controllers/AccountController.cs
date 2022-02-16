@@ -7,12 +7,12 @@ namespace BankApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class AccountController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly UserService _service;
+        private readonly AccountService _service;
 
-        public UsersController(UserService service, IMapper mapper)
+        public AccountController(AccountService service, IMapper mapper)
         {
             _mapper = mapper;
             _service = service;
@@ -22,21 +22,28 @@ namespace BankApi.Controllers
         public IActionResult GetAll()
         {
             var result = _service.GetAll();
-            return Ok(result.Select(model => _mapper.Map<UserDto>(model)));
+            return Ok(result.Select(model => _mapper.Map<AccountDto>(model)));
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
         {
             var result = _service.GetById(id);
-            return Ok(_mapper.Map<UserDto>(result));
+            return Ok(_mapper.Map<AccountDto>(result));
         }
 
         [HttpPost]
-        public IActionResult AddUser(UserDto userDto)
+        public IActionResult AddAccount(AccountDto AccountDto)
         {
-            _service.AddUser(userDto);
+            _service.AddAccount(AccountDto);
             return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
+        }
+
+        [HttpPatch]
+        public IActionResult UpdateAccount(AccountDto accountDto, long id)
+        {
+            _service.UpdateAccount(accountDto, id);
+            return new ObjectResult(null) { StatusCode = StatusCodes.Status202Accepted };
         }
 
     }
