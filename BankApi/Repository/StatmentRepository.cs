@@ -53,5 +53,10 @@ namespace BankApi.Repository
         {
             return _context.Statments.FirstOrDefault(item => item.Id == id);
         }
+
+        public List<Statment> GetByAccountId(long accountId)
+        {
+            return _context.Statments.Where(item => item.AccountId == accountId).ToList();
+        }
     }
 }

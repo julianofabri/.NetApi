@@ -46,5 +46,18 @@ namespace BankApi.Controllers
             return new ObjectResult(null) { StatusCode = StatusCodes.Status202Accepted };
         }
 
+        [HttpPost("deposit")]
+        public IActionResult AccountDeposit(float depositValue, long id)
+        {
+            _service.AccountDeposit(depositValue, id);
+            return new ObjectResult(null) { StatusCode = StatusCodes.Status202Accepted };
+        }
+
+        [HttpPost("withdraw")]
+        public IActionResult AccountWithdrawValue(float depositValue, long id)
+        {
+            _service.AccountWithdraw(depositValue, id);
+            return new ObjectResult(null) { StatusCode = StatusCodes.Status202Accepted };
+        }
     }
 }

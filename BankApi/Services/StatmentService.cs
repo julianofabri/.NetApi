@@ -19,6 +19,12 @@ namespace BankApi.Services
             return allStatments;
         }
 
+        public List<Statment> GetByAccountId(long id)
+        {
+            var allStatments = _statmentRepository.GetByAccountId(id);
+            return allStatments;
+        }
+
         public void AddStatment(StatmentDto statmentDto)
         {
             _statmentRepository.AddStatment(statmentDto);

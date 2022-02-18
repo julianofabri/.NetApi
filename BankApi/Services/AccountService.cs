@@ -26,13 +26,19 @@ namespace BankApi.Services
             _accountRepository.AddAccount(accountDto);
         }
 
+        public Account GetById(long id)
+        {
+            var account = _accountRepository.GetById(id);
+            return account;
+        }
+
         public void UpdateAccount(AccountDto accountDto, long id)
         {
             var account = _accountRepository.GetById(id);
             var statment = new StatmentDto()
             {
                 AccountId = account.Id,
-                Description = accountDto.Amount.ToString(),
+                Description = accountDto.Amount.ToString("F"),
                 date = DateTime.UtcNow
             };
 
@@ -40,10 +46,26 @@ namespace BankApi.Services
             _accountRepository.UpdateAccount(accountDto, id);
         }
 
-        public Account GetById(long id)
+        public void AccountDeposit(float depositValue, long id)
         {
             var account = _accountRepository.GetById(id);
-            return account;
+            var accountUpdate = new AccountDto()
+            {
+                Amount = account.Amount + depositValue,
+                UserId = account.UserId,
+            };
+            this.UpdateAccount(accountUpdate, id);       
+        }
+
+        public void AccountWithdraw(float withdrawValue, long id)
+        {
+            var account = _accountRepository.GetById(id);
+            var accountUpdate = new AccountDto()
+            {
+                Amount = account.Amount - withdrawValue,
+                UserId = account.UserId,
+            };
+            this.UpdateAccount(accountUpdate, id);
         }
     }
 }

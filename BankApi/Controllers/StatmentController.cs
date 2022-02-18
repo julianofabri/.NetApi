@@ -24,6 +24,13 @@ namespace BankApi.Controllers
             var result = _service.GetAll();
             return Ok(result.Select(model => _mapper.Map<StatmentDto>(model)));
         }
+        
+        [HttpGet("GetByAccountId/{accountId}")]
+        public IActionResult GetByAccountId(long accountId)
+        {
+            var result = _service.GetByAccountId(accountId);
+            return Ok(result.Select(model => _mapper.Map<StatmentDto>(model)));
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetById(long id)
