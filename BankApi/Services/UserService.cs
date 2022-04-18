@@ -1,13 +1,13 @@
-﻿using BankApi.Models;
-using BankApi.Repository;
+﻿using BankApi.Interfaces;
+using BankApi.Models;
 
 namespace BankApi.Services
 {
     public class UserService
     {
-        readonly UserRepository _userRepository;
+        readonly IUserRepository _userRepository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

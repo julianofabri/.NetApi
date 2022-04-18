@@ -1,8 +1,9 @@
-﻿using BankApi.Models;
+﻿using BankApi.Interfaces;
+using BankApi.Models;
 
 namespace BankApi.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         readonly AppDbContext _context;
 
