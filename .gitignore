@@ -2,3 +2,5 @@
 BankApi/obj/*
 BankApi/bin/*
 .vs
+BankApiTest/bin/*
+BankApiTest/obj/*

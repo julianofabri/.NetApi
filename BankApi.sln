@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApi", "BankApi\BankApi.csproj", "{3221367C-B936-474A-B047-7E61B2FB74B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApiTest", "BankApiTest\BankApiTest.csproj", "{DAE7F78A-CCFE-47C3-A131-902ED4DBAE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApiTest", "BankApiTest\BankApiTest.csproj", "{DAE7F78A-CCFE-47C3-A131-902ED4DBAE46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

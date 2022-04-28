@@ -1,6 +1,7 @@
 using AutoMapper;
 using BankApi;
 using BankApi.DtoMappers;
+using BankApi.Interfaces;
 using BankApi.Repository;
 using BankApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,9 @@ builder.Services.AddEntityFrameworkNpgsql()
    .AddDbContext<AppDbContext>()
    .BuildServiceProvider();
 builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<CashMachineService>();
+builder.Services.AddScoped<ICashMachineRepository, CashMachineRepository>();
 var mappingConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new UserProfile());
